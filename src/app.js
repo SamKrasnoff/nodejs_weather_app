@@ -5,7 +5,8 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 
-const app = express();
+const app = express()
+const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 const partialsPath = path.join(__dirname, 'templates/partials')
 app.set('view engine','hbs')
@@ -67,14 +68,14 @@ app.get('/help', (req,res) => {
     res.render('help',{
         title: 'Help',
         helper: 'This is a help message for anyone that needs to see it.',
-        name: 'SAMUEL'
+        name: 'Sam Krasnoff'
     })
 })
 
 app.get('/help/*', (req, res) => {
     res.render('catchall',{
         title: 'Error 404',
-        name: 'Sam',
+        name: 'Sam Krasnoff',
         error: 'Help article not found'
     })
 })
@@ -82,11 +83,11 @@ app.get('/help/*', (req, res) => {
 app.get('*', (req, res) => {
     res.render('catchall',{
         title: 'Error 404',
-        name: 'Sam',
+        name: 'Sam Krasnoff',
         error: 'Page not found'
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
